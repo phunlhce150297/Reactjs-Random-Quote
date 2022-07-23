@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
-  const [click, setClick] = useState(false);
+  const [isClick, setIsClick] = useState(false);
 
   useEffect(() => {
     fetch(apiUrl)
@@ -19,10 +19,10 @@ function App() {
           console.log(err);
         }
       );
-  }, [click]);
+  }, [isClick]);
 
   const handleClick = () => {
-    setClick(!click);
+    setIsClick(!isClick);
   };
 
   return (
