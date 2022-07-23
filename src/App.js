@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import Form from "./components/Form/index";
+import { apiUrl } from "./components/api/constant";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [content, setContent] = useState("");
+  const [author, setAuthor] = useState("");
+  const [click, setClick] = useState(false);
+
+  useEffect(() => {
+    fetch(apiUrl)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setContent(result.content);
+          setAuthor(result.author);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }, [click]);
+
+  const handleClick = () => {
+    setClick(!click);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form
+        title="Quote of the day"
+        content={content}
+        author={author}
+        handleClick={handleClick}
+      />
     </div>
   );
 }
