@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <Form
-        title="Quote of the day"
+        title="Random Quote App"
         content={content}
         author={author}
         handleClick={handleClick}
